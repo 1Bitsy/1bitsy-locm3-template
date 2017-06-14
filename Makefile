@@ -27,6 +27,10 @@ Q := @
 MAKEFLAGS += --no-print-directory
 endif
 
+# In case you are using an older compiler or want to set the C standard to a
+# specific version globally for the project this is where that would go.
+#CFLAGS += -std=gnu11
+
 OPENCM3_DIR := $(realpath libopencm3)
 BUILD_RULES = elf
 

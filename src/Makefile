@@ -27,5 +27,9 @@ LDSCRIPT = ../1bitsy-stm32f415rgt.ld
 # in the way of debugging your code
 #CFLAGS		+= -Os
 
+# If your project is using a specific C standard you can set it by uncommenting
+# the following line and adjusting the -std flag accordingly
+#CFLAGS		+= -std=gnu11 -pedantic
+
 include ../libopencm3.target.mk
 
