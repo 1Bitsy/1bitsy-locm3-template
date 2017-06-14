@@ -28,15 +28,15 @@ MAKEFLAGS += --no-print-directory
 endif
 
 OPENCM3_DIR := $(realpath libopencm3)
-EXAMPLE_RULES = elf
+BUILD_RULES = elf
 
 all: build
 
-bin: EXAMPLE_RULES += bin
-hex: EXAMPLE_RULES += hex
-srec: EXAMPLE_RULES += srec
-list: EXAMPLE_RULES += list
-images: EXAMPLE_RULES += images
+bin: BUILD_RULES += bin
+hex: BUILD_RULES += hex
+srec: BUILD_RULES += srec
+list: BUILD_RULES += list
+images: BUILD_RULES += images
 
 bin: build
 hex: build
@@ -61,16 +61,18 @@ lib:
 
 src: lib
 	@printf "  BUILD   $@\n";
-	$(Q)$(MAKE) --directory=$@ OPENCM3_DIR=$(OPENCM3_DIR) $(EXAMPLE_RULES)
+	$(Q)$(MAKE) --directory=$@ OPENCM3_DIR=$(OPENCM3_DIR) $(BUILD_RULES)
 
-examples: $(EXAMPLE_DIRS)
-	$(Q)true
+flash: src
+	@printf "  FLASH   $@\n";
+	$(Q)$(MAKE) --directory=src flash
 
-clean: $(EXAMPLE_DIRS:=.clean)
+clean:
 	$(Q)$(MAKE) -C libopencm3 clean
+	$(Q)$(MAKE) -C src clean
 
-stylecheck: $(EXAMPLE_DIRS:=.stylecheck)
-styleclean: $(EXAMPLE_DIRS:=.styleclean)
+stylecheck: src.stylecheck
+styleclean: src.styleclean
 
 
 %.clean:
@@ -86,6 +88,6 @@ styleclean: $(EXAMPLE_DIRS:=.styleclean)
 	$(Q)$(MAKE) -C $* stylecheck OPENCM3_DIR=$(OPENCM3_DIR)
 
 
-.PHONY: build lib examples $(EXAMPLE_DIRS) install clean stylecheck styleclean \
+.PHONY: build lib examples install clean stylecheck styleclean \
         bin hex srec list images
 

@@ -73,12 +73,12 @@ endif
 
 INCLUDE_DIR	= $(OPENCM3_DIR)/include
 LIB_DIR		= $(OPENCM3_DIR)/lib
-SCRIPT_DIR	= $(OPENCM3_DIR)/scripts
+SCRIPT_DIR	= ../scripts
 
 ###############################################################################
 # C flags
 
-CFLAGS		+= -Os -g
+CFLAGS		+= -g
 CFLAGS		+= -Wextra -Wshadow -Wimplicit-function-declaration
 CFLAGS		+= -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes
 CFLAGS		+= -fno-common -ffunction-sections -fdata-sections

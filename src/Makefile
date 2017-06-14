@@ -17,11 +17,15 @@
 ## along with this library.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
-BINARY = fancyblink
+BINARY = 1bitsy-example
 
 OBJS = main.o
 
-LDSCRIPT = ../stm32f4-discovery.ld
+LDSCRIPT = ../1bitsy-stm32f415rgt.ld
+
+# You can enable size optimization for project deployment, but it can get
+# in the way of debugging your code
+#CFLAGS		+= -Os
 
 include ../libopencm3.target.mk
 

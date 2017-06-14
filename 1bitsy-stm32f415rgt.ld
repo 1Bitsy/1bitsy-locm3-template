@@ -18,7 +18,7 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* Linker script for ST STM32F4DISCOVERY (STM32F407VG, 1024K flash, 128K RAM). */
+/* Linker script for 1Bitsy (STM32F415RGT, 1024K flash, 128K RAM). */
 
 /* Define memory regions. */
 MEMORY

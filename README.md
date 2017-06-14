@@ -1,17 +1,17 @@
 # README
 
-This repository contains an example of structuring your libopencm3 based project.
+This repository contains an example of structuring your 1Bitsy project using
+the libopencm3 hardware library.
+
+The 1Bitsy is an open hardware stm32F415 based small microcontroller development
+board.
+
+For more information visit http://1bitsy.org
 
 The libopencm3 project aims to create an open-source firmware library for
 various ARM Cortex-M3 microcontrollers.
 
 For more information visit http://libopencm3.org
-
-The example are meant as starting point for a stm32f4 discovery board project.
-
-The goal is to demonstrate how one could organize a project. Even though it is
-set up to use stm32f4 discovery board as a target it should be fairly easy to
-adapt to your own platform.
 
 ## Usage
 
@@ -28,6 +28,5 @@ Magic Probe and upload the firmware to your target.
 
 ## Contributions
 
-Pull requests simplifying and making this example easier to adapt to other
-platforms and projects are welcome! Please strive to keep things fairly simple
-and magical as possible. :)
+Pull requests simplifying and making this example easier to adapt are welcome!
+Please strive to keep things fairly simple and magical as possible. :)

@@ -4,6 +4,7 @@
  * Copyright (C) 2009 Uwe Hermann <uwe@hermann-uwe.de>
  * Copyright (C) 2011 Damjan Marion <damjan.marion@gmail.com>
  * Copyright (C) 2011 Mark Panajotovic <marko@electrontube.org>
+ * Copyright (C) 2017 Piotr Esden-Tempski <piotr@esden.net>
  *
  * This library is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -25,17 +26,17 @@
 /* Set STM32 to 168 MHz. */
 static void clock_setup(void)
 {
-	rcc_clock_setup_hse_3v3(&rcc_hse_8mhz_3v3[RCC_CLOCK_3V3_168MHZ]);
+	rcc_clock_setup_hse_3v3(&rcc_hse_25mhz_3v3[RCC_CLOCK_3V3_168MHZ]);
 
 	/* Enable GPIOD clock. */
-	rcc_periph_clock_enable(RCC_GPIOD);
+	rcc_periph_clock_enable(RCC_GPIOA);
 }
 
 static void gpio_setup(void)
 {
-	/* Set GPIO12-15 (in GPIO port D) to 'output push-pull'. */
-	gpio_mode_setup(GPIOD, GPIO_MODE_OUTPUT,
-			GPIO_PUPD_NONE, GPIO12 | GPIO13 | GPIO14 | GPIO15);
+	/* Set GPIO8 (in GPIO port A) to 'output push-pull'. */
+	gpio_mode_setup(GPIOA, GPIO_MODE_OUTPUT,
+			GPIO_PUPD_NONE, GPIO8);
 }
 
 int main(void)
@@ -46,12 +47,12 @@ int main(void)
 	gpio_setup();
 
 	/* Set two LEDs for wigwag effect when toggling. */
-	gpio_set(GPIOD, GPIO12 | GPIO14);
+	gpio_set(GPIOA, GPIO8);
 
-	/* Blink the LEDs (PD12, PD13, PD14 and PD15) on the board. */
+	/* Blink the LEDs (PA8) on the board. */
 	while (1) {
 		/* Toggle LEDs. */
-		gpio_toggle(GPIOD, GPIO12 | GPIO13 | GPIO14 | GPIO15);
+		gpio_toggle(GPIOA, GPIO8);
 		for (i = 0; i < 6000000; i++) { /* Wait a bit. */
 			__asm__("nop");
 		}
