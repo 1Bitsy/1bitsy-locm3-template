@@ -35,7 +35,7 @@ OOCD_BOARD	?= stm32f4discovery
 ################################################################################
 # Black Magic Probe specific variables
 # Set the BMP_PORT to a serial port and then BMP is used for flashing
-BMP_PORT	?= /dev/ttyACM0
+BMP_PORT	?=
 
 ################################################################################
 # texane/stlink specific variables
