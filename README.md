@@ -26,6 +26,20 @@ You compile the needed part of the library and the project firmware by invoking
 Executing "make flash" will try to use arm-none-eabi-gdb to connect ta a Black
 Magic Probe and upload the firmware to your target.
 
+## Notes
+
+If you are using an older GCC compiler. (pre V5) You may need to provide the C
+standard to the compiler. Otherwise the compiler might complain. To solve the
+issue you can invoke the `make` command in the top level directory by setting the
+`CFLAGS` variable:
+```
+CFLAGS=-std=c99 make
+```
+
+If your own project is using some specific extensions to the C standard you can
+add the necessary `CFLAGS` variable setting to your project Makefile in the src
+subdirectory.
+
 ## Contributions
 
 Pull requests simplifying and making this example easier to adapt are welcome!
