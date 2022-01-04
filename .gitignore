@@ -9,6 +9,7 @@
 *.map
 *.stylecheck
 nbproject
+generated.*
 
 # MacOSX
 .DS_Store
