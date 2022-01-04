@@ -17,8 +17,7 @@
 ## along with this library.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
-PREFIX		?= arm-none-eabi
-#PREFIX		?= arm-elf
+PREFIX		?= arm-none-eabi-
 
 # Be silent per default, but 'make V=1' will show all compiler calls.
 ifneq ($(V),1)
@@ -27,11 +26,7 @@ Q := @
 MAKEFLAGS += --no-print-directory
 endif
 
-# In case you are using an older compiler or want to set the C standard to a
-# specific version globally for the project this is where that would go.
-#CFLAGS += -std=gnu11
-
-OPENCM3_DIR := $(realpath libopencm3)
+OPENCM3_DIR ?= $(realpath libopencm3)
 BUILD_RULES = elf
 
 all: build
@@ -51,7 +46,7 @@ images: build
 build: lib src
 
 lib:
-	$(Q)if [ ! "`ls -A libopencm3`" ] ; then \
+	$(Q)if [ ! "`ls -A $(OPENCM3_DIR)`" ] ; then \
 		printf "######## ERROR ########\n"; \
 		printf "\tlibopencm3 is not initialized.\n"; \
 		printf "\tPlease run:\n"; \
@@ -61,7 +56,7 @@ lib:
 		printf "######## ERROR ########\n"; \
 		exit 1; \
 		fi
-	$(Q)$(MAKE) -C libopencm3 lib TARGETS="stm32/f4"
+	$(Q)$(MAKE) -C $(OPENCM3_DIR) lib TARGETS="stm32/f4"
 
 src: lib
 	@printf "  BUILD   $@\n";

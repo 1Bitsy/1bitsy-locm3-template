@@ -19,18 +19,21 @@
 ## along with this library.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
+# You should use linker script generation! Specify device!
+ifeq ($(DEVICE),)
 LIBNAME		= opencm3_stm32f4
-DEFS		= -DSTM32F4
+DEFS		+= -DSTM32F4
 
 FP_FLAGS	?= -mfloat-abi=hard -mfpu=fpv4-sp-d16
 ARCH_FLAGS	= -mthumb -mcpu=cortex-m4 $(FP_FLAGS)
+endif
 
 ################################################################################
 # OpenOCD specific variables
 
 OOCD		?= openocd
 OOCD_INTERFACE	?= stlink-v2
-OOCD_BOARD	?= stm32f4discovery
+OOCD_TARGET	?= stm32f4x
 
 ################################################################################
 # Black Magic Probe specific variables
@@ -43,6 +46,3 @@ BMP_PORT	?=
 
 
 include ../libopencm3.rules.mk
-
-
-
